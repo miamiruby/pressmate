@@ -10,8 +10,8 @@
 		echo $scripts_for_layout;
 		print $html->css('pressmate');
 	?>
-	<?php print $javascript->link('jquery-1.2.6.min.js') ?>
-	<?php print $javascript->link('jquery.form.js') ?>
+	<?php if (isset($javascript)) print $javascript->link('jquery-1.2.6.min.js') ?>
+	<?php if (isset($javascript)) print $javascript->link('jquery.form.js') ?>
 	
 	<?php print $this->renderElement('google_analytics') ?>
 		

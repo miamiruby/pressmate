@@ -56,6 +56,7 @@ class AppController extends Controller {
 		$this->__loadConfig();
 		$this->__styleAdmin();
 		$this->__validationErrors();
+		$this->__data();
 	}
 	
 	/**
@@ -81,6 +82,19 @@ class AppController extends Controller {
 			$this->Session->write('validationErrors', null);
 		}
 	}
+	
+	/**
+	 * propagates data back to source contoller after error in another method
+	 */
+	function __data() {
+		if ($data = $this->Session->read('data')) {
+			foreach ($data as $k => $i) {
+				$obj = ClassRegistry::init($k);
+				$this->data[$k] = $i;
+			}
+			$this->Session->write('data', null);
+		}
+	}
 		
 	/**
 	 * apply admin template to admin routes
@@ -95,10 +109,10 @@ class AppController extends Controller {
 	 * loads configuration from database
 	 */
 	function __loadConfig() {	
-		$config = $this->Config->read(null, 1);		
+		$config = $this->Config->findById(1);		
 		Configure::write('Config', $config['Config']);
 			
-		$user = $this->User->read(null, $this->Session->read('Auth.User.id'));
+		$user = $this->User->findById($this->Session->read('Auth.User.id'));
 		$user = $user['User'];
 		Configure::write('User', $user);
 	}

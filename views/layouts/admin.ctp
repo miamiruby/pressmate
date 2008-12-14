@@ -77,32 +77,46 @@
                             <div id="communication" class="yuimenu">
                                 <div class="bd">
                                     <ul>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/content/add') ?>">Create Content</a></li>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/content/') ?>">Manage Content</a></li> 
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/links/add') ?>">Create Link</a></li>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/links/') ?>">Manage Links</a></li>                                   		
+										<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Posts</a>
+											<div id="" class="yuimenu">
+												<div class="bd">
+													<ul class="first-of-type">
+														<li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/content/add') ?>">Create Post</a></li>
+														<li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/content/') ?>">Manage Posts</a></li> 
+													</ul>            
+												</div>
+											</div>                    
+										</li>
+										<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Links</a>
+											<div id="" class="yuimenu">
+												<div class="bd">
+													<ul class="first-of-type">
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/links/add') ?>">Create Link</a></li>
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/links/') ?>">Manage Links</a></li>
+													</ul>            
+												</div>
+											</div>                    
+										</li>                               		
                                     </ul>
                                 </div>
                             </div>      
-                        
                         </li>
                         <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="<?php print Router::url('/admin/users') ?>">Users</a>
                             <div id="users" class="yuimenu">
                                 <div class="bd">                    
                                     <ul>
                                         <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/users/create') ?>">Create User</a></li>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/users/') ?>">View Users</a></li>
+                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/users/') ?>">Manage Users</a></li>
                                     </ul>
                                 </div>
                             </div>                    
                         
                         </li>
-
                         <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="<?php print Router::url('/admin/config') ?>">Options</a>
                             <div id="entertainment" class="yuimenu">
                                 <div class="bd">                    
                                     <ul>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/config') ?>">Manage Configuration</a></li>
+                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/config') ?>">Configuration</a></li>
                                     </ul>                    
                                 </div>
 

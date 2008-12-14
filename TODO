@@ -12,3 +12,7 @@
 * Twitter Support
 
 * 301 redirects
+* serve as an OpenID auth server
+* talk to OpenID auth servers
+
+* download vcard

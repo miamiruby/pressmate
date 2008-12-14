@@ -41,7 +41,7 @@ foreach ($contents as $content):
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $content['Content']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $content['Content']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $content['Content']['id'])); ?>
+			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $content['Content']['id']), null, 'Are you sure you want to delete?'); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -45,7 +45,7 @@ CREATE TABLE `aros` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=40;
+) TYPE=MyISAM AUTO_INCREMENT=42;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `comments` (
   `content_id` int(11) default NULL,
   `url` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=3;
+) TYPE=MyISAM AUTO_INCREMENT=4;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -150,6 +150,8 @@ CREATE TABLE `contents` (
   `updated` datetime default NULL,
   `slug` varchar(200) default NULL,
   `commentable` int(11) default NULL,
+  `redirect_code` int(3) default NULL,
+  `redirecet_url` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=31;
 SET character_set_client = @saved_cs_client;
@@ -166,7 +168,7 @@ CREATE TABLE `links` (
   `name` varchar(100) default NULL,
   `url` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=2;
+) TYPE=MyISAM AUTO_INCREMENT=5;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -201,7 +203,7 @@ CREATE TABLE `users` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `uk_username` (`username`),
   UNIQUE KEY `uk_email` (`email`)
-) TYPE=MyISAM AUTO_INCREMENT=41;
+) TYPE=MyISAM AUTO_INCREMENT=43;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -210,4 +212,4 @@ SET character_set_client = @saved_cs_client;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-12-14  9:26:40
+-- Dump completed on 2008-12-14 19:01:05
