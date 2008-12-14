@@ -230,3 +230,4 @@
 2008-12-14 14:29:04 Notice: Notice (8): Undefined variable: javascript in [APP/views/layouts/default.ctp, line 13]
 2008-12-14 14:29:38 Notice: Notice (8): Undefined variable: javascript in [APP/views/layouts/default.ctp, line 13]
 2008-12-14 14:29:38 Notice: Notice (8): Undefined variable: javascript in [APP/views/layouts/default.ctp, line 14]
+2008-12-14 15:29:37 Notice: Notice (8): Undefined property: View::$Session in [APP/views/content/index.ctp, line 23]

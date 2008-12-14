@@ -20,7 +20,7 @@ fieldset {
 </style>
 
 <div id="login">
-	<?php print $this->renderElement('login') ?>
+	<?php if (!$session->read('Auth')) print $this->renderElement('login') ?>
 </div>
 
 <?php foreach ($contents as $c) { ?>

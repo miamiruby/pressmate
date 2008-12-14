@@ -2,8 +2,8 @@
 class ContentController extends AppController {
 
 	var $name = 'Content';
-	var $helpers = array('Html', 'Form', 'Javascript', 'LiveValidation.JqueryForm', 'Rss');
-	var $components = array('LiveValidation.JqueryForm', 'RequestHandler');
+	var $helpers = array('Html', 'Form', 'Javascript', 'Rss');
+	var $components = array('RequestHandler');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
