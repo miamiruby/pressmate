@@ -79,7 +79,7 @@ class User extends AppModel {
 		}
 		
 		// assign to proper password field
-		$this->data[$this->alias]['password'] = $this->data[$this->alias]['password1'];
+		$this->data[$this->alias]['password'] = Security::hash($this->data[$this->alias]['password1'], null, true);
 		return true;
 	}
 	
