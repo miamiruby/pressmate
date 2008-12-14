@@ -1,0 +1,1 @@
+<div>You have successfully installed PRESSMATE</div>

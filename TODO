@@ -1,0 +1,14 @@
+* add SecurityComponent
+* add 2nd parameter to save()
+* escape output automatically
+* refactor CSS
+* make sure everything is comments
+* write tests
+
+* comment spam protection
+* RSS feeds
+* FeedBurner Support
+* Google Analytics Support
+* Twitter Support
+
+* 301 redirects
