@@ -17,6 +17,8 @@ class Config extends AppModel {
 			'message' => 'Must be valid Google Analytics key. Only letters, numbers, and hyphens allowed',
 			'allowEmpty' => true
 		)
+		// spam_question
+		// spam answer
 	);
 	
 }

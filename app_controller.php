@@ -47,13 +47,13 @@ class AppController extends Controller {
 		
 	function beforeFilter() {
 		parent::beforeFilter();
+		$this->__loadConfig();
 		$this->Auth->loginRedirect = '/admin';
 		$this->Auth->logoutRedirect = '/';
 	}
 		
 	function beforeRender() {
 		parent::beforeRender();
-		$this->__loadConfig();
 		$this->__styleAdmin();
 		$this->__validationErrors();
 		$this->__data();

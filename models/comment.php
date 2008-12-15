@@ -14,6 +14,10 @@ class Comment extends AppModel {
 		'email' => array(
 			'rule' => array('email'),
 			'message' => 'Must be valid email address'
+		),
+		'url' => array(
+			'rule' => array('url'),
+			'message' => 'Must be valid web address'
 		)
 	);
 	

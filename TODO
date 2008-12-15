@@ -20,6 +20,8 @@
 
 * compatible with WordPress templates
 * import from WordPress
+* move configs to key/value pair table for easy upgrades
+* themes
 
 
 * Why a new CMS
