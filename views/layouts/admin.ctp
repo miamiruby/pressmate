@@ -96,7 +96,17 @@
 													</ul>            
 												</div>
 											</div>                    
-										</li>                               		
+										</li> 
+										<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Categories</a>
+											<div id="" class="yuimenu">
+												<div class="bd">
+													<ul class="first-of-type">
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/categories/add') ?>">Create Category</a></li>
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/categories/') ?>">Manage Categories</a></li>
+													</ul>            
+												</div>
+											</div>                    
+										</li>                              		
                                     </ul>
                                 </div>
                             </div>      

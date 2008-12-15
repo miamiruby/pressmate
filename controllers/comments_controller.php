@@ -2,8 +2,7 @@
 
 class CommentsController extends AppController {
 	
-	var $components = array('LiveValidation.JqueryForm');
-	var $helpers = array('LiveValidation.JqueryForm', 'Paginator');
+	var $helpers = array('Paginator');
 
 	function add() {
 		if (!empty($this->data)) {

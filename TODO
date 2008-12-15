@@ -14,5 +14,16 @@
 * 301 redirects
 * serve as an OpenID auth server
 * talk to OpenID auth servers
+* add RSS feed to header
 
 * download vcard
+
+* compatible with WordPress templates
+* import from WordPress
+
+
+* Why a new CMS
+
+- Built on a framework you can live with CakePHP
+- It's both a module and a complete solution
+- Every part of the system has a development API
