@@ -25,7 +25,8 @@ class User extends AppModel {
 		),
 		'avatar_url' => array(
 			'rule' => array('url'),
-			'message' => 'Must be valid web address'
+			'message' => 'Must be valid web address',
+			'allowEmpty' => true
 		),
 		'username' => array(
 			'usernameExists' => array(
@@ -40,12 +41,12 @@ class User extends AppModel {
 		'password' => array(
 			'rule' => array('validatePassword'),
 			'message' => 'Passwords must match',
-			'empty' => false
+			'allowEmpty' => false
 		),
 		'password1' => array(
 			'rule' => array('validatePassword'),
 			'message' => 'Passwords must match',
-			'empty' => false
+			'allowEmpty' => false
 		)
 	);
 
