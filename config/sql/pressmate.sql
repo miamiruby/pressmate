@@ -157,6 +157,21 @@ CREATE TABLE `contents` (
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `contents_tags`
+--
+
+DROP TABLE IF EXISTS `contents_tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `contents_tags` (
+  `id` int(11) NOT NULL auto_increment,
+  `tag_id` int(11) default NULL,
+  `content_id` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `links`
 --
 
@@ -186,6 +201,20 @@ CREATE TABLE `statuses` (
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(100) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `users`
 --
 
@@ -212,4 +241,4 @@ SET character_set_client = @saved_cs_client;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-12-14 19:01:05
+-- Dump completed on 2008-12-15  5:56:08

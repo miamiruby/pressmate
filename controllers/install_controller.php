@@ -47,9 +47,6 @@ class InstallController extends AppController {
 				// create initital user
 				$this->User->save($this->data['User'], false);
 				
-				// populate initial status table data
-				$this->__populateStatusTables();
-				
 				$this->redirect('/');
 				
 			} else {
@@ -57,19 +54,7 @@ class InstallController extends AppController {
 			}
 		}
 	}
-	
-	/**
-	 * fills status tables with data
-	 */
-	function __populateStatusTables() {
-		$data = array(
-			1 => 'Published',
-			2 => 'Draft'
-		);
-		$this->Status = ClassRegistry::init('Status');
-		$this->Status->save($data);
-	}
-	
+		
 	/**
 	 * creates database.php files
 	 */
@@ -130,6 +115,11 @@ END;
 				
 				// import new schema
 				$file = $dir . 'sql/pressmate.sql';
+				$cmd  = "mysql -u $username -p$password $database < $file";
+				`$cmd`;
+				
+				// import schema data
+				$file = $dir . 'sql/data.sql';
 				$cmd  = "mysql -u $username -p$password $database < $file";
 				`$cmd`;
 								
