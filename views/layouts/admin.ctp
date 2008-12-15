@@ -106,7 +106,17 @@
 													</ul>            
 												</div>
 											</div>                    
-										</li>                              		
+										</li>
+										<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Tags</a>
+											<div id="" class="yuimenu">
+												<div class="bd">
+													<ul class="first-of-type">
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/tags/add') ?>">Create Tag</a></li>
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/tags/') ?>">Manage Tags</a></li>
+													</ul>            
+												</div>
+											</div>                    
+										</li>                           		
                                     </ul>
                                 </div>
                             </div>      

@@ -62,9 +62,10 @@ class ContentController extends AppController {
 			}
 		}
 		$categories = $this->Content->Category->find('list');
+		$tags = $this->Content->Tag->find('list');
 		$statuses = $this->Content->Status->find('list');
 		$commentables = array(1 => 'Yes', 0 => 'No');
-		$this->set(compact('categories', 'statuses', 'commentables'));
+		$this->set(compact('categories', 'statuses', 'commentables', 'tags'));
 	}
 
 	function admin_edit($id = null) {
@@ -84,9 +85,10 @@ class ContentController extends AppController {
 			$this->data = $this->Content->read(null, $id);
 		}
 		$categories = $this->Content->Category->find('list');
+		$tags = $this->Content->Tag->find('list');
 		$statuses = $this->Content->Status->find('list');
 		$commentables = array(1 => 'Yes', 0 => 'No');
-		$this->set(compact('categories', 'statuses', 'commentables'));
+		$this->set(compact('categories', 'statuses', 'commentables', 'tags'));
 	}
 
 	function admin_delete($id = null) {

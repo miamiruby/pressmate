@@ -47,12 +47,27 @@ class InstallController extends AppController {
 				// create initital user
 				$this->User->save($this->data['User'], false);
 				
+				// populate initial status table data
+				$this->__populateStatusTables();
+				
 				$this->redirect('/');
 				
 			} else {
 				$this->Session->setFlash(__('Failed to configure system', true));
 			}
 		}
+	}
+	
+	/**
+	 * fills status tables with data
+	 */
+	function __populateStatusTables() {
+		$data = array(
+			1 => 'Published',
+			2 => 'Draft'
+		);
+		$this->Status = ClassRegistry::init('Status');
+		$this->Status->save($data);
 	}
 	
 	/**

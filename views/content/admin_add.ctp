@@ -10,6 +10,7 @@
 		echo $form->input('redirect_code');
 		echo $form->input('redirect_url');
 		echo $form->input('Category');
+		echo $form->input('Tag');
 	?>
 	</fieldset>
 <?php echo $form->end('Create');?>
