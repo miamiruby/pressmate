@@ -23,6 +23,13 @@ class InstallController extends AppController {
 		}
 		
 		if (!empty($this->data)) {
+			
+			// $dir = APP . 'webroot/' . $this->data['Config']['image_path'];
+			// if (!is_writable($dir)) {
+			// 	$this->Session->setFlash(__('Please make sure image path is writable by the webserver', true), null, null, 'error');
+			// 	throw new Exception();
+			// }
+			
 			$this->Config = ClassRegistry::init('Config');
 			$this->Content = ClassRegistry::init('Content');
 			$this->User = ClassRegistry::init('User');
@@ -50,7 +57,7 @@ class InstallController extends AppController {
 	 * creates database.php files
 	 */
 	function index() {
-															
+																	
 		if (file_exists(APP . 'config/database.php')) {
 			$this->redirect('/install/configure');
 		}
@@ -74,6 +81,12 @@ class DATABASE_CONFIG {
 END;
 
 			try {
+				
+				$mysql = trim(`/usr/bin/which mysql`);
+				if (!$mysql) {
+					$this->Session->setFlash(__('Cannot find mysql in your path', true), null, null, 'error');
+					throw new Exception();
+				}
 				
 				$dir = APP . 'webroot/upload/';
 				if (!is_writable($dir)) {
@@ -106,15 +119,15 @@ END;
 					$this->Session->setFlash(__('Failed to create database', true), null, null, 'error');
 					throw new Exception();
 				}
-				
+							
 				// import new schema
 				$file = $dir . 'sql/pressmate.sql';
-				$cmd  = "mysql -u $username -p$password $database < $file";
+				$cmd  = "$mysql -u $username -p$password $database < $file";
 				`$cmd`;
 				
 				// import schema data
 				$file = $dir . 'sql/data.sql';
-				$cmd  = "mysql -u $username -p$password $database < $file";
+				$cmd  = "$mysql -u $username -p$password $database < $file";
 				`$cmd`;
 								
 				$this->redirect('/install/configure');
