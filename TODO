@@ -5,24 +5,33 @@
 * make sure everything is comments
 * write tests
 
-* comment spam protection
-* RSS feeds
 * FeedBurner Support
-* Google Analytics Support
 * Twitter Support
 
-* 301 redirects
+
 * serve as an OpenID auth server
 * talk to OpenID auth servers
-* add RSS feed to header
 
+* navigate away confirmation for forms
+
+CONTENT FEATURES
+* 301 redirects
+* add RSS feed to header
 * download vcard
 
-* compatible with WordPress templates
+TOOLS
 * import from WordPress
-* move configs to key/value pair table for easy upgrades
-* themes
 
+TEMPLATES
+* themes
+* compatible with WordPress templates
+
+ARCHITECTURE
+* move configs to key/value pair table for easy upgrades
+
+COMMENTS
+* highlight admin posts
+* remember me when leaving comments
 
 * Why a new CMS
 

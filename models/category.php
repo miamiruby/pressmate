@@ -6,8 +6,8 @@ class Category extends AppModel {
 	
 	 var $validate = array(
 		'name' => array(
-			'rule' => array('custom', '/^[A-Za-z\- ]+$/'),
-			'message' => 'Only letters, spaces, and hyphens allowed'
+			'rule' => array('custom', '/^[A-Za-z\-& ]+$/'),
+			'message' => 'Only letters, spaces, ampersand, and hyphens allowed'
 		)
 	);
 	

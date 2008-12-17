@@ -3,6 +3,11 @@
 class CommentsController extends AppController {
 	
 	var $helpers = array('Paginator');
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+	}
 
 	function add() {
 		if (!empty($this->data)) {
@@ -17,6 +22,8 @@ class CommentsController extends AppController {
 				}
 			}
 			if ($this->Comment->save($this->data)) {
+				extract($this->data['Comment']);
+				$this->Cookie->write('CommentUser', compact('name', 'email', 'url'));
 				$this->Session->setFlash(__('Successfully saved comment', true));
 			} else {
 				$this->Session->write('data.Comment', $this->data['Comment']);

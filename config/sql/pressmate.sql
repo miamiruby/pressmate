@@ -45,7 +45,7 @@ CREATE TABLE `aros` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=42;
+) TYPE=MyISAM AUTO_INCREMENT=43;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -129,6 +129,7 @@ CREATE TABLE `configs` (
   `site_name` varchar(200) default NULL,
   `avatar_url` varchar(200) default NULL,
   `google_analytics` varchar(50) default NULL,
+  `image_path` varchar(200) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM AUTO_INCREMENT=11;
 SET character_set_client = @saved_cs_client;
@@ -167,6 +168,20 @@ CREATE TABLE `contents_tags` (
   `id` int(11) NOT NULL auto_increment,
   `tag_id` int(11) default NULL,
   `content_id` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `images`
+--
+
+DROP TABLE IF EXISTS `images`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
 ) TYPE=MyISAM;
 SET character_set_client = @saved_cs_client;
@@ -232,7 +247,7 @@ CREATE TABLE `users` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `uk_username` (`username`),
   UNIQUE KEY `uk_email` (`email`)
-) TYPE=MyISAM AUTO_INCREMENT=43;
+) TYPE=MyISAM AUTO_INCREMENT=44;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -241,4 +256,4 @@ SET character_set_client = @saved_cs_client;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-12-15  5:56:08
+-- Dump completed on 2008-12-17 18:06:21

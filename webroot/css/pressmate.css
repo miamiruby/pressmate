@@ -510,3 +510,53 @@ form div.error {
 	color: red;
 }
 
+#column_right {
+	float: right;
+	width: 30%;
+	background-color: white;
+}
+
+.comments {
+	padding: 10px;
+	margin: 10px;
+	width: 60%;	
+}
+fieldset {
+	margin-top: 0;
+}
+#login {
+	float: right;
+	width: 33%;
+}
+
+div.post {
+	padding: 10px;
+	margin: 10px;
+	background-color: #EEEEEE;
+}
+div.post div.title {
+	font-weight: bold;
+	font-size: 30px;
+}
+div.post div.who {
+	color: red;
+}
+div.post div.time {
+	font-size: 11px;
+}
+div.post div.body {
+	margin-top: 20px;
+}
+
+
+div#comments_recent {
+	
+}
+div#comments_recent div.comment {
+	margin-bottom: 5px;
+	border-bottom: 1px solid grey;
+}
+div#comments_recent div.who {
+	font-size: 11px;
+}
+

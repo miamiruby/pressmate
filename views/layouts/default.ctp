@@ -9,9 +9,15 @@
 	<?php
 		echo $scripts_for_layout;
 		print $html->css('pressmate');
+		print $html->css('/js/highlight/styles/vs.css');
 	?>
 	<?php if (isset($javascript)) print $javascript->link('jquery-1.2.6.min.js') ?>
 	<?php if (isset($javascript)) print $javascript->link('jquery.form.js') ?>
+
+	<?php if (isset($javascript)) print $javascript->link('highlight/highlight.pack.js') ?>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
 	
 	<?php print $this->renderElement('google_analytics') ?>
 		

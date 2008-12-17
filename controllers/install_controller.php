@@ -34,16 +34,7 @@ class InstallController extends AppController {
 				$this->Session->setFlash(__('Successfully configured system', true));
 				$file = new File(APP . 'config/INSTALLED');
 				$file->write(time());
-				
-				// create helpful first post
-				$data['Content'] = array(
-					'id' => 1,
-					'title' => 'Welcome To PressMate CMS',
-					'body' => 'Feel free to sign in with your new account',
-					'status_id' => 1
-				);
-				$this->Content->save($data);
-				
+								
 				// create initital user
 				$this->User->save($this->data['User'], false);
 				
@@ -66,7 +57,6 @@ class InstallController extends AppController {
 
 		if (!empty($this->data)) {
 						
-			// build database configuration
 			extract($this->data['Install']);	
 				
 			$config = <<<END
@@ -84,10 +74,14 @@ class DATABASE_CONFIG {
 END;
 
 			try {
+				
+				$dir = APP . 'webroot/upload/';
+				if (!is_writable($dir)) {
+					$this->Session->setFlash(__('Please make sure /webroot/upload is writable by the webserver', true), null, null, 'error');
+					throw new Exception();
+				}
 		
 				$dir = APP . 'config/';
-	
-				// check to see if config dir is writable
 				if (!is_writable($dir)) {
 					$this->Session->setFlash(__('Please make sure /config is writable by the webserver', true), null, null, 'error');
 					throw new Exception();

@@ -116,7 +116,17 @@
 													</ul>            
 												</div>
 											</div>                    
-										</li>                           		
+										</li> 
+										<li class="yuimenuitem"><a class="yuimenuitemlabel" href="#">Images</a>
+											<div id="" class="yuimenu">
+												<div class="bd">
+													<ul class="first-of-type">
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/images/add') ?>">Create Image</a></li>
+				                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/images') ?>">Manage Images</a></li>
+													</ul>            
+												</div>
+											</div>                    
+										</li>                          		
                                     </ul>
                                 </div>
                             </div>      
@@ -137,6 +147,7 @@
                                 <div class="bd">                    
                                     <ul>
                                         <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/config') ?>">Configuration</a></li>
+              							<li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/redirects') ?>">Redirect Manager</a></li>
                                     </ul>                    
                                 </div>
 

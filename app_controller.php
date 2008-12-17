@@ -36,9 +36,11 @@
  */
 class AppController extends Controller {
 	
-	var $components = array('Auth');
+	var $components = array('Auth', 'Cookie');
 	var $helpers = array('Javascript', 'Form');
 	var $uses = array('Config', 'User');
+	#var $view = 'Theme';
+	#var $theme = 'pressmate';
 	
 	function __construct() {
 		$this->__checkInstall();
@@ -93,6 +95,10 @@ class AppController extends Controller {
 				$this->data[$k] = $i;
 			}
 			$this->Session->write('data', null);
+		}
+		// attempts to remember identity of commentor and prefill fields
+		if (empty($this->data['Comment']) && $data = $this->Cookie->read('CommentUser')) {
+			$this->data['Comment'] = $data;
 		}
 	}
 		

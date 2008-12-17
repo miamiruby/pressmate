@@ -28,7 +28,7 @@ class Image extends AppModel {
 	 * returns url to image
 	 */
 	function url($name = '') {
-		return Configure::read('Config.image_path') . $name;
+		return '/' . Configure::read('Config.image_path') . $name;
 	}
 	
 	/**

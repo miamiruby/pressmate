@@ -2,8 +2,9 @@
 class ContentController extends AppController {
 
 	var $name = 'Content';
-	var $helpers = array('Html', 'Form', 'Javascript', 'Rss');
+	var $helpers = array('Html', 'Form', 'Javascript', 'Rss', 'Time', 'Text', 'Geshi');
 	var $components = array('RequestHandler');
+	var $uses = array('Content', 'Link');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -20,12 +21,15 @@ class ContentController extends AppController {
 	 */
 	function index($slug = '') {
 		if ($slug) {
-			$this->set('contents', $this->Content->findAllBySlug($slug));
+			$contents = $this->Content->findAllBySlug($slug);
 		} else {
 			$this->Content->recursive = 1;
-			$contents = $this->paginate('Content.status_id=1');
-			$this->set('contents', $contents);
+			$contents = $this->paginate(array('Content.status_id' => 1));
 		}
+		$links = $this->Link->find('all');
+		$categories = $this->Content->Category->find('all');
+		$comments_recent = $this->Content->Comment->find('all');
+		$this->set(compact('contents', 'categories', 'links', 'comments_recent'));
 	}
 
 	/**
