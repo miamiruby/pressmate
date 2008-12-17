@@ -2,7 +2,7 @@
 class ContentController extends AppController {
 
 	var $name = 'Content';
-	var $helpers = array('Html', 'Form', 'Javascript', 'Rss', 'Time', 'Text', 'Geshi');
+	var $helpers = array('Html', 'Form', 'Javascript', 'Rss', 'Time', 'Text');
 	var $components = array('RequestHandler');
 	var $uses = array('Content', 'Link');
 	
