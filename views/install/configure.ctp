@@ -3,6 +3,7 @@
 <fieldset>
 	<legend><?php __('Configuration') ?></legend>
 <?php print $form->create('Config', array('url' => '/install/configure')) ?>
+<?php print $form->hidden('id', array('value' => 1))?>
 <?php print $form->input('site_name') ?>
 <?php print $form->input('image_path', array('value' => 'upload/'))?>
 <?php print $form->input('User.first_name') ?>

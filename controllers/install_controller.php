@@ -22,31 +22,21 @@ class InstallController extends AppController {
 			$this->redirect('/install/');
 		}
 		
-		if (!empty($this->data)) {
+		if (!empty($this->data)) {			
 			
-			// $dir = APP . 'webroot/' . $this->data['Config']['image_path'];
-			// if (!is_writable($dir)) {
-			// 	$this->Session->setFlash(__('Please make sure image path is writable by the webserver', true), null, null, 'error');
-			// 	throw new Exception();
-			// }
-			
-			$this->Config = ClassRegistry::init('Config');
+			$this->Config  = ClassRegistry::init('Config');
 			$this->Content = ClassRegistry::init('Content');
-			$this->User = ClassRegistry::init('User');
+			$this->User    = ClassRegistry::init('User');
 			
-			$this->Config->data['Config']['id'] = 1;
-			if ($this->Config->save($this->data)) {
-				
+			if ($this->Config->save($this->data)) {		
 				// mark as installed
 				$this->Session->setFlash(__('Successfully configured system', true));
 				$file = new File(APP . 'config/INSTALLED');
 				$file->write(time());
-								
+				
 				// create initital user
 				$this->User->save($this->data['User'], false);
-				
 				$this->redirect('/');
-				
 			} else {
 				$this->Session->setFlash(__('Failed to configure system', true));
 			}
@@ -57,15 +47,11 @@ class InstallController extends AppController {
 	 * creates database.php files
 	 */
 	function index() {
-																	
 		if (file_exists(APP . 'config/database.php')) {
 			$this->redirect('/install/configure');
 		}
-
 		if (!empty($this->data)) {
-						
-			extract($this->data['Install']);	
-				
+			extract($this->data['Install']);
 			$config = <<<END
 class DATABASE_CONFIG {
 	var \$default = array(
@@ -79,21 +65,12 @@ class DATABASE_CONFIG {
 	);
 }
 END;
-
 			try {
-				
-				$mysql = trim(`/usr/bin/which mysql`);
-				if (!$mysql) {
-					$this->Session->setFlash(__('Cannot find mysql in your path', true), null, null, 'error');
-					throw new Exception();
-				}
-				
 				$dir = APP . 'webroot/upload/';
 				if (!is_writable($dir)) {
 					$this->Session->setFlash(__('Please make sure /webroot/upload is writable by the webserver', true), null, null, 'error');
 					throw new Exception();
 				}
-		
 				$dir = APP . 'config/';
 				if (!is_writable($dir)) {
 					$this->Session->setFlash(__('Please make sure /config is writable by the webserver', true), null, null, 'error');
@@ -106,7 +83,7 @@ END;
 						$this->Session->setFlash(__('Successfully wrote database configuration', true));
 					}
 				}
-
+				
 				App::import('ConnectionManager');
 				$db = ConnectionManager::getDataSource('default');
 				
@@ -119,25 +96,32 @@ END;
 					$this->Session->setFlash(__('Failed to create database', true), null, null, 'error');
 					throw new Exception();
 				}
-							
-				// import new schema
-				$file = $dir . 'sql/pressmate.sql';
-				$cmd  = "$mysql -u $username -p$password $database < $file";
-				`$cmd`;
+				
+				// reconnect database, drop/create killed the handle
+				$db->connect();
+				
+				// import schema
+				App::import('Schema');
+				$schema = new CakeSchema;
+				$schema = $schema->load();
+				foreach ($schema->tables as $d => $t) {
+					$db->execute($db->createSchema($schema, $d));
+				}
 				
 				// import schema data
-				$file = $dir . 'sql/data.sql';
-				$cmd  = "$mysql -u $username -p$password $database < $file";
-				`$cmd`;
+				include(APP . 'config/sql/data.php');
+				foreach ($data as $name => $records) {
+					$model = ClassRegistry::init($name);
+					foreach ($records as $r) {
+						$model->save($r);
+					}
+				}
 								
 				$this->redirect('/install/configure');
 		
-			} catch (Exception $e) {
-		
-			}
-		
+			} catch (Exception $e) {}	
 		}
-	
+			
 	}
 	
 }
