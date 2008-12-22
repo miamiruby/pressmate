@@ -38,6 +38,7 @@ class InstallController extends AppController {
 				
 				// create initital user
 				$this->data['User']['area_id'] = $this->Area->id;
+				// @TODO validate data
 				$this->User->save($this->data['User'], false);
 				$this->User->saveField('user_id', $this->User->id);
 				
@@ -49,6 +50,8 @@ class InstallController extends AppController {
 			} else {
 				$this->Session->setFlash(__('Failed to configure system', true));
 			}
+		} else {
+			$this->data['Url'][0]['url'] = Router::url('/', true);
 		}
 	}
 		
