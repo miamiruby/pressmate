@@ -4,7 +4,7 @@ class Content extends AppModel {
 
 	var $actsAs = array('Sluggable');
 	var $hasMany = array('Comment');
-	var $belongsTo = array('Status', 'User');
+	var $belongsTo = array('Area', 'User', 'ContentType', 'ContentStatus');
 	var $hasAndBelongsToMany = array('Category', 'Tag');
 	
 	 var $validate = array(
@@ -13,8 +13,7 @@ class Content extends AppModel {
 			'message' => 'Only letters, numbers, spaces, commas, periods, and hyphens allowed'
 		)
 	);
-
-		
+				
 }
 
 ?>

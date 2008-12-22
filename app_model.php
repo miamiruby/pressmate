@@ -37,5 +37,23 @@
  * @subpackage    cake.app
  */
 class AppModel extends Model {
+	
+	function beforeSave() {
+		$this->__injectUser();
+		return true;
+	}
+	
+	/**
+	 * make sure record is tagged with user_id
+	 */
+	function __injectUser() {
+		$user_id = $_SESSION['Auth']['User']['id'];
+		if (!isset($this->_schema['user_id'])) {
+			throw new Exception($this->alias . ' is not being tagged with user_id');
+		}
+		if (empty($this->data[$this->alias]['user_id'])) {
+			$this->data[$this->alias]['user_id'] = $user_id;
+		}
+	}
 }
 ?>

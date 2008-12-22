@@ -140,13 +140,21 @@
                                     </ul>
                                 </div>
                             </div>                    
-                        
+                        </li>
+						<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="<?php print Router::url('/areas') ?>">Areas</a>
+                            <div id="areas" class="yuimenu">
+                                <div class="bd">                    
+                                    <ul>
+                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/areas/add') ?>">Create Area</a></li>
+                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/areas/') ?>">Manage Area</a></li>
+                                    </ul>
+                                </div>
+                            </div>                    
                         </li>
                         <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="<?php print Router::url('/admin/config') ?>">Options</a>
                             <div id="entertainment" class="yuimenu">
                                 <div class="bd">                    
                                     <ul>
-                                        <li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/admin/config') ?>">Configuration</a></li>
               							<li class="yuimenuitem"><a class="yuimenuitemlabel" href="<?php print Router::url('/redirects') ?>">Redirect Manager</a></li>
                                     </ul>                    
                                 </div>

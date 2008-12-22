@@ -4,13 +4,13 @@ class ContentController extends AppController {
 	var $name = 'Content';
 	var $helpers = array('Html', 'Form', 'Javascript', 'Rss', 'Time', 'Text');
 	var $components = array('RequestHandler');
-	var $uses = array('Content', 'Link');
+	var $uses = array('Content');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('index');
 	}
-		
+			
 	/**
 	 * Dashboard stub
 	 */
@@ -24,9 +24,8 @@ class ContentController extends AppController {
 			$contents = $this->Content->findAllBySlug($slug);
 		} else {
 			$this->Content->recursive = 1;
-			$contents = $this->paginate(array('Content.status_id' => 1));
+			$contents = $this->paginate(array('Content.content_status_id' => 1));
 		}
-		$links = $this->Link->find('all');
 		$categories = $this->Content->Category->find('all');
 		$comments_recent = $this->Content->Comment->find('all');
 		$this->set(compact('contents', 'categories', 'links', 'comments_recent'));
@@ -65,11 +64,13 @@ class ContentController extends AppController {
 			} else {
 			}
 		}
+		$areas = $this->Content->Area->find('list');
+		$content_types = $this->Content->ContentType->find('list');
 		$categories = $this->Content->Category->find('list');
 		$tags = $this->Content->Tag->find('list');
-		$statuses = $this->Content->Status->find('list');
+		$content_statuses = $this->Content->ContentStatus->find('list');
 		$commentables = array(1 => 'Yes', 0 => 'No');
-		$this->set(compact('categories', 'statuses', 'commentables', 'tags'));
+		$this->set(compact('areas', 'content_types', 'categories', 'content_statuses', 'commentables', 'tags'));
 	}
 
 	function admin_edit($id = null) {
@@ -88,11 +89,13 @@ class ContentController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Content->read(null, $id);
 		}
+		$areas = $this->Content->Area->find('list');
+		$content_types = $this->Content->ContentType->find('list');
 		$categories = $this->Content->Category->find('list');
 		$tags = $this->Content->Tag->find('list');
 		$statuses = $this->Content->Status->find('list');
 		$commentables = array(1 => 'Yes', 0 => 'No');
-		$this->set(compact('categories', 'statuses', 'commentables', 'tags'));
+		$this->set(compact('areas', 'content_types', 'categories', 'statuses', 'commentables', 'tags'));
 	}
 
 	function admin_delete($id = null) {

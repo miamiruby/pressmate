@@ -43,6 +43,12 @@
 	} else {
 		Configure::write('debug', 0);
 	}
+	
+	set_exception_handler('pm_exception_handler');
+	function pm_exception_handler($exception) {
+		debug($exception);
+	}
+	
 /**
  * Application wide charset encoding
  */

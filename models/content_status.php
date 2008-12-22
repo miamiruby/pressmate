@@ -1,6 +1,6 @@
 <?php
 
-class Status extends AppModel {
+class ContentStatus extends AppModel {
 	
 }
 

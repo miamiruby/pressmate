@@ -1,11 +1,17 @@
+<script>
+$(document).ready(function(){
+   $("#AreaName").focus();
+ });
+</script>
+
 <h1><?php __('PressMate Installation') ?></h1>
 
 <fieldset>
 	<legend><?php __('Configuration') ?></legend>
-<?php print $form->create('Config', array('url' => '/install/configure')) ?>
-<?php print $form->hidden('id', array('value' => 1))?>
-<?php print $form->input('site_name') ?>
-<?php print $form->input('image_path', array('value' => 'upload/'))?>
+<?php print $form->create('Area', array('url' => '/install/configure')) ?>
+<?php print $form->hidden('Area.id', array('value' => 1))?>
+<?php print $form->input('Area.name') ?>
+<?php print $form->input('Url.0.url') ?>
 <?php print $form->input('User.first_name') ?>
 <?php print $form->input('User.last_name') ?>
 <?php print $form->input('User.email') ?>

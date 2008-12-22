@@ -42,7 +42,9 @@
 		echo $form->input('id');
 		echo $form->input('title');
 		echo $form->input('body');
-		echo $form->input('status_id');
+		echo $form->input('area_id');
+		echo $form->input('content_type_id');
+		echo $form->input('content_status_id');
 		echo $form->input('commentable');
 		echo $form->input('redirect_code');
 		echo $form->input('redirect_url');

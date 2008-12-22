@@ -1,5 +1,7 @@
 <?php
 
+class InstallerException extends Exception {}
+
 class InstallController extends AppController {
 	
 	var $uses = null;
@@ -24,18 +26,25 @@ class InstallController extends AppController {
 		
 		if (!empty($this->data)) {			
 			
-			$this->Config  = ClassRegistry::init('Config');
+			$this->Area    = ClassRegistry::init('Area');
 			$this->Content = ClassRegistry::init('Content');
 			$this->User    = ClassRegistry::init('User');
 			
-			if ($this->Config->save($this->data)) {		
+			if ($this->Area->saveAll($this->data, array('validate' => 'first'))) {		
 				// mark as installed
 				$this->Session->setFlash(__('Successfully configured system', true));
 				$file = new File(APP . 'config/INSTALLED');
 				$file->write(time());
 				
 				// create initital user
+				$this->data['User']['area_id'] = $this->Area->id;
 				$this->User->save($this->data['User'], false);
+				$this->User->saveField('user_id', $this->User->id);
+				
+				// update area
+				$this->Area->saveField('user_id', $this->User->id);
+				$this->Area->Url->saveField('user_id', $this->User->id);
+				
 				$this->redirect('/');
 			} else {
 				$this->Session->setFlash(__('Failed to configure system', true));
@@ -69,12 +78,12 @@ END;
 				$dir = APP . 'webroot/upload/';
 				if (!is_writable($dir)) {
 					$this->Session->setFlash(__('Please make sure /webroot/upload is writable by the webserver', true), null, null, 'error');
-					throw new Exception();
+					throw new InstallerException();
 				}
 				$dir = APP . 'config/';
 				if (!is_writable($dir)) {
 					$this->Session->setFlash(__('Please make sure /config is writable by the webserver', true), null, null, 'error');
-					throw new Exception();
+					throw new InstallerException();
 				} else {
 					$file = new File($dir . 'database.php');
 					if (!$file->write('<?php '.$config.' ?>')) {
@@ -91,7 +100,7 @@ END;
 					$this->Session->setFlash(__('Failed to drop old database', true), null, null, 'error');
 					throw new Exception();
 				}
-				
+								
 				if (!$db->execute('CREATE DATABASE '.$database)) {
 					$this->Session->setFlash(__('Failed to create database', true), null, null, 'error');
 					throw new Exception();
@@ -116,10 +125,12 @@ END;
 						$model->save($r);
 					}
 				}
-								
+				
 				$this->redirect('/install/configure');
 		
-			} catch (Exception $e) {}	
+			} catch (InstallerException $e) {
+
+			}	
 		}
 			
 	}

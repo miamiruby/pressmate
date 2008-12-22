@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Pressmate schema generated on: 2008-12-17 14:12:25 : 1229541085*/
+/* Pressmate schema generated on: 2008-12-22 18:12:42 : 1229987442*/
 class PressmateSchema extends CakeSchema {
 	var $name = 'Pressmate';
 
@@ -19,6 +19,17 @@ class PressmateSchema extends CakeSchema {
 			'alias' => array('type' => 'string', 'null' => true, 'default' => NULL),
 			'lft' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
 			'rght' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+		);
+	var $areas = array(
+			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $aros = array(
@@ -29,6 +40,9 @@ class PressmateSchema extends CakeSchema {
 			'alias' => array('type' => 'string', 'null' => true, 'default' => NULL),
 			'lft' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
 			'rght' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $aros_acos = array(
@@ -46,12 +60,20 @@ class PressmateSchema extends CakeSchema {
 			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'lft' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'rght' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $categories_contents = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 			'content_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'category_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $comments = array(
@@ -63,26 +85,40 @@ class PressmateSchema extends CakeSchema {
 			'url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
-	var $configs = array(
+	var $content_statuses = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-			'site_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
-			'avatar_url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
-			'google_analytics' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50),
-			'image_path' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+		);
+	var $content_types = array(
+			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $contents = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 			'title' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'body' => array('type' => 'text', 'null' => true, 'default' => NULL),
-			'status_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 1),
+			'content_status_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 1),
 			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'updated' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'slug' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'commentable' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'redirect_code' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
-			'redirecet_url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'redirect_url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'lft' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'rght' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'content_type_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $contents_tags = array(
@@ -96,26 +132,24 @@ class PressmateSchema extends CakeSchema {
 			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
-	var $links = array(
-			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
-			'url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
-			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-		);
 	var $redirects = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 			'from' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'to' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
-	var $statuses = array(
-			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50),
-			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
-		);
 	var $tags = array(
 			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 			'name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
+			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
+		);
+	var $urls = array(
+			'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1))
 		);
 	var $users = array(
@@ -126,6 +160,10 @@ class PressmateSchema extends CakeSchema {
 			'last_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
 			'email' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200, 'key' => 'unique'),
 			'avatar_url' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 200),
+			'area_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+			'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+			'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 			'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'uk_username' => array('column' => 'username', 'unique' => 1), 'uk_email' => array('column' => 'email', 'unique' => 1))
 		);
 }
