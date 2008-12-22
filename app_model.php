@@ -47,6 +47,9 @@ class AppModel extends Model {
 	 * make sure record is tagged with user_id
 	 */
 	function __injectUser() {
+		if (!isset($_SESSION['Auth'])) {
+			return false;
+		}
 		$user_id = $_SESSION['Auth']['User']['id'];
 		if (!isset($this->_schema['user_id'])) {
 			throw new Exception($this->alias . ' is not being tagged with user_id');
