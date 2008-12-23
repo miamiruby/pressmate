@@ -114,7 +114,7 @@ END;
 				
 				// import schema
 				App::import('Schema');
-				$schema = new CakeSchema;
+				$schema = new CakeSchema(array('name' => 'Pressmate'));
 				$schema = $schema->load();
 				foreach ($schema->tables as $d => $t) {
 					$db->execute($db->createSchema($schema, $d));
