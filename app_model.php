@@ -40,6 +40,7 @@ class AppModel extends Model {
 	
 	function beforeSave() {
 		$this->__injectUser();
+		// $this->__injectArea();
 		return true;
 	}
 	
@@ -58,5 +59,20 @@ class AppModel extends Model {
 			$this->data[$this->alias]['user_id'] = $user_id;
 		}
 	}
+	
+	/**
+	 * make sure record is tagged with area_id
+	 */
+	// function __injectArea() {
+	// 	if (!$area = Configure::read('Area')) {
+	// 		return false;
+	// 	}
+	// 	if (!isset($this->_schema['area_id'])) {
+	// 		throw new Exception($this->alias . ' is not being tagged with area_id');
+	// 	}
+	// 	if (empty($this->data[$this->alias]['area_id'])) {
+	// 		$this->data[$this->alias]['area_id'] = $area['id'];
+	// 	}
+	// }
 }
 ?>

@@ -15,10 +15,14 @@ class Url extends AppModel {
 		if (empty($this->data[$this->alias]['url'])) {
 			return 'Must be valid web address';
 		}
-		if ($this->data[$this->alias]['url'] == 'localhost') {
+		if (strstr($this->data[$this->alias]['url'], 'localhost')) {
 			return true;
 		}
-		return Validation::url($this->data[$this->alias]['url']);
+		if (Validation::url($this->data[$this->alias]['url'])) {
+			return true;
+		} else {
+			return 'Must be valid web address';
+		}
 	}
 	
 }
