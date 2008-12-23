@@ -25,7 +25,7 @@ class AreasController extends AppController {
 			$this->redirect($this->referer());
 		}
 		if (!empty($this->data)) {
-			if ($this->Area->save($this->data)) {
+			if ($this->Area->saveAll($this->data, array('validate' => 'first'))) {
 				$this->Session->setFlash(__('Successfully updated area', true));
 				$this->redirect('/admin/areas');
 			} else {

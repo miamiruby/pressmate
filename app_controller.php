@@ -38,7 +38,7 @@ class AppController extends Controller {
 	
 	var $components = array('Auth', 'Cookie');
 	var $helpers = array('Javascript', 'Form', 'Paginator');
-	var $uses = array('User');
+	var $uses = array('User', 'Area');
 	#var $view = 'Theme';
 	#var $theme = 'pressmate';
 	
@@ -115,15 +115,20 @@ class AppController extends Controller {
 	 * determines which area is being requested
 	 */
 	function __determineArea() {
-		// will determine area to write to config, will run domains/subdomains
+		$url = $this->Area->Url->findByUrl(Router::url('/', true));
+		$area = $this->Area->findById($url['Url']['area_id']);
+		if (!$area) {
+			$this->cakeError('error404');
+		}
+		return $area['Area'];
 	}
 	
 	/**
 	 * loads configuration from database
 	 */
 	function __loadConfig() {
-		// $area = $this->__determineArea();
-		// Configure::write('Area', $area);
+		$area = $this->__determineArea();
+		Configure::write('Area', $area);
 		$user = $this->User->findById($this->Session->read('Auth.User.id'));
 		Configure::write('User', $user['User']);
 	}
