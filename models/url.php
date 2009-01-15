@@ -18,6 +18,9 @@ class Url extends AppModel {
 		if (strstr($this->data[$this->alias]['url'], 'localhost')) {
 			return true;
 		}
+		if (strstr($this->data[$this->alias]['url'], '.local')) {
+			return true;
+		}
 		if (Validation::url($this->data[$this->alias]['url'])) {
 			return true;
 		} else {
