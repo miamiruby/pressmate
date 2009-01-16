@@ -37,7 +37,7 @@
 class AppController extends Controller {
 	
 	var $components = array('Auth', 'Cookie');
-	var $helpers = array('Javascript', 'Form', 'Paginator');
+	var $helpers = array('Javascript', 'Form', 'Paginator', 'Gravatar' );
 	var $uses = array('User', 'Area');
 	#var $view = 'Theme';
 	#var $theme = 'pressmate';
