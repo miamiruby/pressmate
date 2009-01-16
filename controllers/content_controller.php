@@ -93,7 +93,7 @@ class ContentController extends AppController {
 		$content_types = $this->Content->ContentType->find('list');
 		$categories = $this->Content->Category->find('list');
 		$tags = $this->Content->Tag->find('list');
-		$statuses = $this->Content->Status->find('list');
+		$statuses = $this->Content->ContentStatus->find('list');
 		$commentables = array(1 => 'Yes', 0 => 'No');
 		$this->set(compact('areas', 'content_types', 'categories', 'statuses', 'commentables', 'tags'));
 	}
